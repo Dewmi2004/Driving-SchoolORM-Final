@@ -1,8 +1,21 @@
 module lk.ijse.drivingschoolormfinal {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
+    requires static lombok;
+
+    requires jakarta.persistence;
+    requires org.hibernate.orm.core;
+    requires java.naming;
+
+    requires jakarta.xml.bind;
+    requires jakarta.activation;
+
+    opens lk.ijse.drivingschoolormfinal.controller to javafx.fxml;
+    opens lk.ijse.drivingschoolormfinal.view.tdm to javafx.base;
+    opens lk.ijse.drivingschoolormfinal.config to jakarta.persistence;
+    opens lk.ijse.drivingschoolormfinal.entity to org.hibernate.orm.core;
 
 
-    opens lk.ijse.drivingschoolormfinal to javafx.fxml;
     exports lk.ijse.drivingschoolormfinal;
 }
