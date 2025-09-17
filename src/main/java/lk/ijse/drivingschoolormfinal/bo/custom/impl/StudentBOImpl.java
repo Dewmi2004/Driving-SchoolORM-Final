@@ -74,18 +74,7 @@ public class StudentBOImpl implements StudentBO {
                 )).collect(Collectors.toList());
     }
 
-    @Override
-    public String getLastID() throws Exception {
-        String lastId = studentDAO.getLastID();
-        char tableChar = 'S';
-        if (lastId != null) {
-            String lastIdNumberString = lastId.substring(1);
-            int lastIdNumber = Integer.parseInt(lastIdNumberString);
-            int nextIdNumber = lastIdNumber + 1;
-            return String.format(tableChar + "%03d", nextIdNumber);
-        }
-        return tableChar + "001";
-    }
+
     }
 
 

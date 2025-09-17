@@ -10,5 +10,5 @@ public interface CrudDao<T, ID extends Serializable> extends SuperDao {
     boolean delete(ID id) throws Exception;
     T findById(ID id) throws Exception;
     List<T> findAll() throws Exception;
-    String getLastID() throws Exception;
+
 }

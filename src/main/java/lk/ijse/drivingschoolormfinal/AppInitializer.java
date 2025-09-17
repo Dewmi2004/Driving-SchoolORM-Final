@@ -10,7 +10,7 @@ import java.io.IOException;
 public class AppInitializer extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AppInitializer.class.getResource("/lk/ijse/drivingschoolormfinal/accests/studentManage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AppInitializer.class.getResource("/lk/ijse/drivingschoolormfinal/accests/instructorManagement.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Aquarium Management Project");
         stage.setScene(scene);

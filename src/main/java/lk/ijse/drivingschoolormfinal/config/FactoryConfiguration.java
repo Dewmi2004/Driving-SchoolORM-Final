@@ -1,5 +1,6 @@
 package lk.ijse.drivingschoolormfinal.config;
 
+import lk.ijse.drivingschoolormfinal.entity.Instructor;
 import lk.ijse.drivingschoolormfinal.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,8 +13,9 @@ public class FactoryConfiguration {
 
     private FactoryConfiguration() {
 
-        Configuration configuration = new Configuration()
-                .addAnnotatedClass(Student.class);
+        Configuration configuration = new Configuration();
+//        configuration.addAnnotatedClass(Student.class);
+        configuration.addAnnotatedClass(Instructor.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }

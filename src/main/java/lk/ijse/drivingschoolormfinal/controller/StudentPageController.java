@@ -1,14 +1,13 @@
 package lk.ijse.drivingschoolormfinal.controller;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import lk.ijse.drivingschoolormfinal.bo.custom.StudentBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
 import lk.ijse.drivingschoolormfinal.model.StudentDTO;
@@ -16,7 +15,6 @@ import lk.ijse.drivingschoolormfinal.view.tdm.StudentTM;
 
 import java.net.URL;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -45,10 +43,7 @@ public class StudentPageController implements Initializable {
     public Button btnUpdate;
     public TableColumn<?,?> colregisterfee;
 
-    private void loadNextId() throws Exception {
-        String nextId = studentBO.getLastID();
-        txtStudentId.setText(nextId);
-    }
+
 
     private void loadAllStudents() {
         try {
@@ -74,7 +69,6 @@ public class StudentPageController implements Initializable {
     public void handleAddStudent(ActionEvent actionEvent) {
         try {
             StudentDTO dto = new StudentDTO(
-                    //txtStudentId.getText(),
                     txtName.getText(),
                     txtEmail.getText(),
                     txtPhone.getText(),
@@ -162,19 +156,15 @@ public class StudentPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        colId.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("studentID"));
-        colName.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("studentName"));
-        colEmail.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("studentEmail"));
-        colPhone.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("studentPhone"));
-        colAddress.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("studentAddress"));
-        colregisterfee.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("registerFee"));
-        colDate.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("registerDate"));
+        colId.setCellValueFactory(new PropertyValueFactory<>("studentID"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("studentName"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("studentEmail"));
+        colPhone.setCellValueFactory(new PropertyValueFactory<>("studentPhone"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("studentAddress"));
+        colregisterfee.setCellValueFactory(new PropertyValueFactory<>("registerFee"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("registerDate"));
 
         loadAllStudents();
-       /* try {
-            loadNextId();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }*/
+
     }
 }

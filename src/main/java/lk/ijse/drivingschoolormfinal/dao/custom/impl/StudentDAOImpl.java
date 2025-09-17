@@ -62,21 +62,4 @@ public class StudentDAOImpl implements StudentDAO {
         return list;
     }
 
-    @Override
-    public String getLastID() throws Exception {
-        Session session = factoryConfiguration.getSession();
-        try {
-        Query<String> query = session.createQuery(
-                "SELECT stu.studentID FROM Student stu ORDER BY stu.studentID DESC",
-                String.class
-        ).setMaxResults(1);
-        List<String> list = query.list();
-        if (list.isEmpty()) {
-            return null;
-        }
-        return list.get(0);
-    } finally {
-        session.close();
-    }
-    }
 }
