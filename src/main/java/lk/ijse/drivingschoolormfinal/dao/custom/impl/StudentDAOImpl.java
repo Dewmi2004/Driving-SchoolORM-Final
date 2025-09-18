@@ -46,13 +46,6 @@ public class StudentDAOImpl implements StudentDAO {
         return student != null;
     }
 
-    @Override
-    public Student findById(String s) throws Exception {
-        Session session = factoryConfiguration.getSession();
-        Student student = session.get(Student.class, s);
-        session.close();
-        return student;
-    }
 
     @Override
     public List<Student> findAll() throws Exception {

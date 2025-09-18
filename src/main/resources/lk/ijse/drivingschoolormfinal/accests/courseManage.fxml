@@ -67,7 +67,7 @@
             <Button fx:id="btnDelete" onAction="#handleDeleteCourse" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Delete" />
         </HBox>
 
-        <TableView fx:id="tblCourses" prefHeight="246.0" prefWidth="930.0" style="-fx-background-color: white; -fx-border-color: lightgray; -fx-border-radius: 8;" VBox.vgrow="ALWAYS">
+        <TableView fx:id="tblCourses" onMouseClicked="#ClickOnAction" prefHeight="246.0" prefWidth="930.0" style="-fx-background-color: white; -fx-border-color: lightgray; -fx-border-radius: 8;" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="colCourseId" prefWidth="120" text="Course ID" />
                 <TableColumn fx:id="colCourseName" prefWidth="180" text="Name" />

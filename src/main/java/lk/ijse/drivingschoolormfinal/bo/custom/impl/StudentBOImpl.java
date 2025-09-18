@@ -45,20 +45,6 @@ public class StudentBOImpl implements StudentBO {
         return studentDAO.delete(id);
     }
 
-    @Override
-    public StudentDTO findById(String id) throws Exception {
-        Student student = studentDAO.findById(id);
-        if (student == null) return null;
-        return new StudentDTO(
-                student.getStudentID(),
-                student.getStudentName(),
-                student.getStudentEmail(),
-                student.getStudentPhone(),
-                student.getStudentAddress(),
-                student.getRegisterFee(),
-                student.getRegisterDate()
-        );
-    }
 
     @Override
     public List<StudentDTO> findAll() throws Exception {

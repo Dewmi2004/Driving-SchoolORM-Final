@@ -46,18 +46,6 @@ public class InstructorBOImpl implements InstructorBO {
         return instructorDAO.delete(id);
     }
 
-    @Override
-    public InstructorDTO findById(String id) throws Exception {
-        Instructor instructor = instructorDAO.findById(id);
-        if (instructor == null) return null;
-        return new InstructorDTO(
-              instructor.getInstructorID(),
-                instructor.getInstructorName(),
-                instructor.getInstructorEmail(),
-                instructor.getInstructorPhone(),
-                instructor.getInstructorAvailability()
-        );
-    }
 
     @Override
     public List<InstructorDTO> findAll() throws Exception {

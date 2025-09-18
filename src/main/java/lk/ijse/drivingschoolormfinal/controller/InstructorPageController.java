@@ -88,7 +88,7 @@ private final InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance()
             );
             if (instructorBO.saveInstructor(dto)) {
                 showInfo("Instructor added successfully!");
-                loadAllStudents();
+                loadAllInstructers();
                 clearFields();
             }
         } catch (Exception e) {
@@ -114,7 +114,7 @@ private final InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance()
         try {
             if (instructorBO.deleteInstructor(txtInstructorId.getText())) {
                 showInfo("Instructor deleted successfully!");
-                loadAllStudents();
+                loadAllInstructers();
                 clearFields();
             }
         } catch (Exception e) {
@@ -135,7 +135,7 @@ private final InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance()
             );
             if (instructorBO.updateInstructor(dto)) {
                 showInfo("Instructor updated successfully!");
-                loadAllStudents();
+                loadAllInstructers();
                 clearFields();
             }
         } catch (Exception e) {
@@ -145,16 +145,16 @@ private final InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance()
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-colInstructorId.setCellValueFactory(new PropertyValueFactory<>("instructorID"));
-colName.setCellValueFactory(new PropertyValueFactory<>("instructorName"));
-colEmail.setCellValueFactory(new PropertyValueFactory<>("instructorEmail"));
-colPhone.setCellValueFactory(new PropertyValueFactory<>("instructorPhone"));
-colAvailability.setCellValueFactory(new PropertyValueFactory<>("instructorAvailability"));
-        loadAllStudents();
-        cmbAvailability.setItems(FXCollections.observableArrayList("Available", "Not Available").sorted());
+        colInstructorId.setCellValueFactory(new PropertyValueFactory<>("instructorID"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("instructorName"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("instructorEmail"));
+        colPhone.setCellValueFactory(new PropertyValueFactory<>("instructorPhone"));
+        colAvailability.setCellValueFactory(new PropertyValueFactory<>("instructorAvailability"));
+                loadAllInstructers();
+                cmbAvailability.setItems(FXCollections.observableArrayList("Available", "Not Available").sorted());
     }
 
-    private void loadAllStudents() {
+    private void loadAllInstructers() {
         try {
             List<InstructorDTO> all = instructorBO.findAll();
             ObservableList<InstructorTM> list = FXCollections.observableArrayList();
