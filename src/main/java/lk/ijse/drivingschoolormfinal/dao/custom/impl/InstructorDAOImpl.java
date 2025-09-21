@@ -57,5 +57,11 @@ public class InstructorDAOImpl implements InstructorDAO {
         session.close();
         return list;
     }
+    public Instructor findById(long id) throws Exception {
+        try (Session session = FactoryConfiguration.getInstance().getSession().getSessionFactory().openSession()) {
+            return session.get(Instructor.class, id);
+        }
+    }
+
 
 }

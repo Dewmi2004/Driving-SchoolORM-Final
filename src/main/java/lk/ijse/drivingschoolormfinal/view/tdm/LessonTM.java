@@ -15,4 +15,14 @@ public class LessonTM {
     private long studentID;
     private long courseID;
     private long instructorID;
+
+    public LessonTM(Date date, String time, String status, long studentID, long courseID, long instructorID) {
+        this.date = date;
+        this.time = time;
+        this.status = status;
+        this.studentID = studentID;
+        this.courseID = courseID;
+        this.instructorID = instructorID;
+    }
 }
+

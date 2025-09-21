@@ -5,7 +5,6 @@ import lk.ijse.drivingschoolormfinal.dao.custom.StudentDAO;
 import lk.ijse.drivingschoolormfinal.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 
 import java.util.List;
@@ -54,5 +53,9 @@ public class StudentDAOImpl implements StudentDAO {
         session.close();
         return list;
     }
-
+    public Student findById(long id) throws Exception {
+        try (Session session = FactoryConfiguration.getInstance().getSession().getSessionFactory().openSession()) {
+            return session.get(Student.class, id);
+        }
+    }
 }

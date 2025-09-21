@@ -2,6 +2,7 @@ package lk.ijse.drivingschoolormfinal.config;
 
 import lk.ijse.drivingschoolormfinal.entity.Course;
 import lk.ijse.drivingschoolormfinal.entity.Instructor;
+import lk.ijse.drivingschoolormfinal.entity.Lesson;
 import lk.ijse.drivingschoolormfinal.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,9 +16,10 @@ public class FactoryConfiguration {
     private FactoryConfiguration() {
 
         Configuration configuration = new Configuration();
-//        configuration.addAnnotatedClass(Student.class);
-//        configuration.addAnnotatedClass(Instructor.class);
+        configuration.addAnnotatedClass(Student.class);
+        configuration.addAnnotatedClass(Instructor.class);
         configuration.addAnnotatedClass(Course.class);
+        configuration.addAnnotatedClass(Lesson.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }

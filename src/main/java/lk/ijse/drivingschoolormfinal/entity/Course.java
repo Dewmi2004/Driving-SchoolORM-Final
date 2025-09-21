@@ -2,6 +2,8 @@ package lk.ijse.drivingschoolormfinal.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,4 +27,15 @@ public class Course {
         this.courseDuration = courseDuration;
         this.courseFee = courseFee;
     }
+
+    public Course(long courseId, String courseName, String courseDuration, String courseFee) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseDuration = courseDuration;
+        this.courseFee = courseFee;
+    }
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Lesson> lessons = new java.util.ArrayList<>();
+
 }

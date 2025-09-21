@@ -3,6 +3,7 @@ package lk.ijse.drivingschoolormfinal.dao;
 
 import lk.ijse.drivingschoolormfinal.dao.custom.impl.CourseDAOImpl;
 import lk.ijse.drivingschoolormfinal.dao.custom.impl.InstructorDAOImpl;
+import lk.ijse.drivingschoolormfinal.dao.custom.impl.LessonDAOImpl;
 import lk.ijse.drivingschoolormfinal.dao.custom.impl.StudentDAOImpl;
 
 public class DAOFactory {
@@ -18,7 +19,7 @@ public class DAOFactory {
 
     }
     public enum DAOtypes{
-        STUDENT,INSTRUCTOR,COURSE
+        STUDENT,INSTRUCTOR,COURSE,LESSON
     }
     public SuperDao getDAO(DAOtypes dao){
         switch(dao){
@@ -28,6 +29,8 @@ public class DAOFactory {
                 return new InstructorDAOImpl();
                 case COURSE:
                     return new CourseDAOImpl();
+                    case LESSON:
+                        return new LessonDAOImpl();
               default:
                   return null;
         }

@@ -1,14 +1,10 @@
 package lk.ijse.drivingschoolormfinal.bo.custom.impl;
 
 import lk.ijse.drivingschoolormfinal.bo.custom.InstructorBO;
-import lk.ijse.drivingschoolormfinal.bo.custom.StudentBO;
 import lk.ijse.drivingschoolormfinal.dao.DAOFactory;
 import lk.ijse.drivingschoolormfinal.dao.custom.InstructorDAO;
-import lk.ijse.drivingschoolormfinal.dao.custom.StudentDAO;
 import lk.ijse.drivingschoolormfinal.entity.Instructor;
-import lk.ijse.drivingschoolormfinal.entity.Student;
 import lk.ijse.drivingschoolormfinal.model.InstructorDTO;
-import lk.ijse.drivingschoolormfinal.model.StudentDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,6 +54,7 @@ public class InstructorBOImpl implements InstructorBO {
                         instructor.getInstructorAvailability()
                 )).collect(Collectors.toList());
     }
+
 
     }
 

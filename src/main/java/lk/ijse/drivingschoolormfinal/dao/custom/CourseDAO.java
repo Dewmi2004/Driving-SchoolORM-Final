@@ -5,5 +5,5 @@ import lk.ijse.drivingschoolormfinal.entity.Course;
 import lk.ijse.drivingschoolormfinal.entity.Instructor;
 
 public interface CourseDAO extends CrudDao<Course, String>{
-
+    public Course findById(long id) throws Exception;
 }

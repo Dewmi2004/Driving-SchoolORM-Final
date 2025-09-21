@@ -179,5 +179,6 @@ private final InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance()
             private void showError (String msg){
                 new Alert(Alert.AlertType.ERROR, msg).show();
             }
+
         }
 

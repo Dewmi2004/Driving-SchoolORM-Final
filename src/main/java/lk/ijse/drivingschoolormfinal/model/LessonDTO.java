@@ -19,4 +19,13 @@ public class LessonDTO {
     private long studentID;
     private long courseID;
     private long instructorID;
+
+    public LessonDTO(Date date, String time, String status, long studentID, long courseID, long instructorID) {
+        this.date = date;
+        this.time = time;
+        this.status = status;
+        this.studentID = studentID;
+        this.courseID = courseID;
+        this.instructorID = instructorID;
+    }
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -37,4 +39,18 @@ public class Student extends SuperEntity {
         this.registerFee = registerFee;
         this.registerDate = registerDate;
     }
+
+    public Student(long studentID, String studentName, String studentEmail, String studentPhone, String studentAddress, String registerFee, Date registerDate) {
+        this.studentID = studentID;
+        this.studentName = studentName;
+        this.studentEmail = studentEmail;
+        this.studentPhone = studentPhone;
+        this.studentAddress = studentAddress;
+        this.registerFee = registerFee;
+        this.registerDate = registerDate;
+    }
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Lesson> lessons = new java.util.ArrayList<>();
+
 }
