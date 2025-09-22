@@ -6,6 +6,7 @@ import lk.ijse.drivingschoolormfinal.dao.custom.InstructorDAO;
 import lk.ijse.drivingschoolormfinal.entity.Instructor;
 import lk.ijse.drivingschoolormfinal.model.InstructorDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +55,16 @@ public class InstructorBOImpl implements InstructorBO {
                         instructor.getInstructorAvailability()
                 )).collect(Collectors.toList());
     }
+    @Override
+    public ArrayList<InstructorDTO> getAllInstructor() throws Exception {
+        ArrayList<Instructor> instructor = (ArrayList<Instructor>) instructorDAO.findAll();
 
+        ArrayList<InstructorDTO> instructorDTOS = new ArrayList<>();
+        for (Instructor i : instructor) {
+            instructorDTOS.add(new InstructorDTO(i.getInstructorID(),i.getInstructorName(),i.getInstructorEmail(),i.getInstructorPhone(),i.getInstructorAvailability()));
+        }
+        return instructorDTOS;
+    }
 
     }
 

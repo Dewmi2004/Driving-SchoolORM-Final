@@ -6,6 +6,7 @@ import lk.ijse.drivingschoolormfinal.model.InstructorDTO;
 import lk.ijse.drivingschoolormfinal.model.LessonDTO;
 import lk.ijse.drivingschoolormfinal.model.StudentDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface LessonBO extends SuperBO {
@@ -21,4 +22,6 @@ public interface LessonBO extends SuperBO {
     List<String> getAllInstructorIds() throws Exception;
      List<String> getAllCourseIds() throws Exception;
      List<String> getAllStudentIds() throws Exception;
+
+    ArrayList<LessonDTO> getAllLesson() throws Exception;
 }

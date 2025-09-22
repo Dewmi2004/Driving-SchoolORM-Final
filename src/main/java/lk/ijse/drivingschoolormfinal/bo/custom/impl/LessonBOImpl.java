@@ -10,7 +10,6 @@ import lk.ijse.drivingschoolormfinal.entity.Course;
 import lk.ijse.drivingschoolormfinal.entity.Instructor;
 import lk.ijse.drivingschoolormfinal.entity.Lesson;
 import lk.ijse.drivingschoolormfinal.entity.Student;
-import lk.ijse.drivingschoolormfinal.model.CourseDTO;
 import lk.ijse.drivingschoolormfinal.model.LessonDTO;
 import lk.ijse.drivingschoolormfinal.model.StudentDTO;
 
@@ -107,5 +106,14 @@ private final InstructorDAO instructorDAO = (InstructorDAO) DAOFactory.getInstan
         }
         return idList;
     }
+    @Override
+    public ArrayList<LessonDTO> getAllLesson() throws Exception {
+        ArrayList<Lesson> lessons = (ArrayList<Lesson>) lessonDAO.findAll();
 
+        ArrayList<LessonDTO> lessonDTOS = new ArrayList<>();
+        for (Lesson s : lessons) {
+            lessonDTOS.add(new LessonDTO(s.getLessonID(),s.getDate(),s.getTime(),s.getStatus(), s.getStudent().getStudentID(), s.getCourse().getCourseId(), s.getInstructor().getInstructorID()));
+        }
+        return lessonDTOS;
+    }
 }

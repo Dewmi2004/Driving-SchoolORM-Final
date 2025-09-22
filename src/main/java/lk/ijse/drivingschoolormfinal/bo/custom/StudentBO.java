@@ -3,6 +3,8 @@ package lk.ijse.drivingschoolormfinal.bo.custom;
 import lk.ijse.drivingschoolormfinal.bo.SuperBO;
 import lk.ijse.drivingschoolormfinal.model.StudentDTO;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface StudentBO extends SuperBO {
@@ -12,4 +14,5 @@ public interface StudentBO extends SuperBO {
     List<StudentDTO> findAll() throws Exception;
 
 
+    ArrayList<StudentDTO> getAllStudent() throws SQLException, Exception;
 }

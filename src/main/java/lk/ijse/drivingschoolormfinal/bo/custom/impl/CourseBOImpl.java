@@ -1,15 +1,12 @@
 package lk.ijse.drivingschoolormfinal.bo.custom.impl;
 
 import lk.ijse.drivingschoolormfinal.bo.custom.CourseBO;
-import lk.ijse.drivingschoolormfinal.bo.custom.InstructorBO;
 import lk.ijse.drivingschoolormfinal.dao.DAOFactory;
 import lk.ijse.drivingschoolormfinal.dao.custom.CourseDAO;
-import lk.ijse.drivingschoolormfinal.dao.custom.InstructorDAO;
 import lk.ijse.drivingschoolormfinal.entity.Course;
-import lk.ijse.drivingschoolormfinal.entity.Instructor;
 import lk.ijse.drivingschoolormfinal.model.CourseDTO;
-import lk.ijse.drivingschoolormfinal.model.InstructorDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +51,17 @@ public class CourseBOImpl implements CourseBO {
                         course.getCourseFee()
                 )).collect(Collectors.toList());
     }
+    @Override
+    public ArrayList<CourseDTO> getAllCourse() throws Exception {
+        ArrayList<Course> course = (ArrayList<Course>) courseDAO.findAll();
 
+        ArrayList<CourseDTO> courseDTOS = new ArrayList<>();
+        for (Course c : course) {
+            courseDTOS.add(new CourseDTO(c.getCourseId(),c.getCourseName(),c.getCourseDuration(),c.getCourseFee()));
+        }
+        return courseDTOS;
+
+    }
     }
 
 

@@ -4,6 +4,7 @@ import lk.ijse.drivingschoolormfinal.bo.SuperBO;
 import lk.ijse.drivingschoolormfinal.model.InstructorDTO;
 import lk.ijse.drivingschoolormfinal.model.StudentDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface InstructorBO extends SuperBO {
@@ -12,4 +13,5 @@ public interface InstructorBO extends SuperBO {
     boolean deleteInstructor(String id) throws Exception;
     List<InstructorDTO> findAll() throws Exception;
 
+    ArrayList<InstructorDTO> getAllInstructor() throws Exception;
 }
