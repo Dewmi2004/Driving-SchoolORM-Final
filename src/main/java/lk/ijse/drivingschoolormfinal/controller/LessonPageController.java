@@ -11,8 +11,10 @@ import javafx.scene.input.MouseEvent;
 import lk.ijse.drivingschoolormfinal.bo.custom.InstructorBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.LessonBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
+import lk.ijse.drivingschoolormfinal.model.CourseDTO;
 import lk.ijse.drivingschoolormfinal.model.InstructorDTO;
 import lk.ijse.drivingschoolormfinal.model.LessonDTO;
+import lk.ijse.drivingschoolormfinal.model.StudentDTO;
 import lk.ijse.drivingschoolormfinal.view.tdm.LessonTM;
 
 import java.net.URL;
@@ -88,10 +90,11 @@ public class LessonPageController implements Initializable {
             txtLessonId.setText(String.valueOf(selected.getLessonID()));
             dateLesson.setValue(selected.getDate().toLocalDate());
             txtTime.setText(selected.getTime());
-            cmbStatus.getSelectionModel().select(Integer.parseInt(selected.getStatus()));////see hear integer
-            cmbStudentId.getSelectionModel().select(Integer.parseInt(String.valueOf(selected.getStudentID())));////see hear integer
-            cmbCourseId.getSelectionModel().select(Integer.parseInt(String.valueOf(selected.getCourseID())));////see hear integer
-            cmbInstructorId.getSelectionModel().select(Integer.parseInt(String.valueOf(selected.getInstructorID())));////see hear integer
+            cmbStatus.getSelectionModel().select(String.valueOf(selected.getStatus()));
+            cmbStudentId.getSelectionModel().select(String.valueOf(selected.getStudentID()));
+            cmbCourseId.getSelectionModel().select(String.valueOf(selected.getCourseID()));
+            cmbInstructorId.getSelectionModel().select(String.valueOf(selected.getInstructorID()));
+
         }
     }
 
@@ -172,6 +175,9 @@ public class LessonPageController implements Initializable {
         cmbStatus.setItems(FXCollections.observableArrayList("Scheduled", "Completed", "Cancelled").sorted());
 
         // TODO: Load student IDs, course IDs, instructor IDs into combo boxes from DB
+        loadCourseIds();
+        loadInstructorIds();
+        loadStudentIds();
     }
 
     private void loadAllLessons() {
@@ -213,8 +219,34 @@ public class LessonPageController implements Initializable {
         new Alert(Alert.AlertType.ERROR, msg).show();
     }
 
+    private void loadInstructorIds() {
+        try {
+            List<String> ids = lessonBO.getAllInstructorIds();
+            ObservableList<String> list = FXCollections.observableArrayList(ids);
+            cmbInstructorId.setItems(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
-
+    private void loadCourseIds() {
+        try {
+            List<String> ids = lessonBO.getAllCourseIds();
+            ObservableList<String> list = FXCollections.observableArrayList(ids);
+            cmbCourseId.setItems(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void loadStudentIds() {
+        try {
+            List<String> ids = lessonBO.getAllStudentIds();
+            ObservableList<String> list = FXCollections.observableArrayList(ids);
+            cmbStudentId.setItems(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 

@@ -18,4 +18,9 @@ public class InstructorDTO {
         this.instructorPhone = instructorPhone;
         this.instructorAvailability = instructorAvailability;
     }
+
+    public InstructorDTO(long instructorID, String instructorName) {
+        this.instructorID = instructorID;
+        this.instructorName = instructorName;
+    }
 }

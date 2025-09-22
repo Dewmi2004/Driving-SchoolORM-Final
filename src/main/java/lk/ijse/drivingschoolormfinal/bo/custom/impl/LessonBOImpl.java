@@ -10,8 +10,11 @@ import lk.ijse.drivingschoolormfinal.entity.Course;
 import lk.ijse.drivingschoolormfinal.entity.Instructor;
 import lk.ijse.drivingschoolormfinal.entity.Lesson;
 import lk.ijse.drivingschoolormfinal.entity.Student;
+import lk.ijse.drivingschoolormfinal.model.CourseDTO;
 import lk.ijse.drivingschoolormfinal.model.LessonDTO;
+import lk.ijse.drivingschoolormfinal.model.StudentDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,4 +77,35 @@ private final InstructorDAO instructorDAO = (InstructorDAO) DAOFactory.getInstan
                         lesson.getInstructor().getInstructorID()
                  )).collect(Collectors.toList());
     }
+
+    @Override
+    public List<String> getAllInstructorIds() throws Exception {
+        List<Instructor> list = instructorDAO.findAll();
+        List<String> idList = new ArrayList<>();
+        for (Instructor i : list) {
+            idList.add(String.valueOf(i.getInstructorID()));
+        }
+        return idList;
+    }
+
+    @Override
+    public List<String> getAllCourseIds() throws Exception {
+        List<Course> list = courseDAO.findAll();
+        List<String> idList = new ArrayList<>();
+        for (Course i : list) {
+            idList.add(String.valueOf(i.getCourseId()));
+        }
+        return idList;
+    }
+
+    @Override
+    public List<String> getAllStudentIds() throws Exception {
+        List<Course> list = courseDAO.findAll();
+        List<String> idList = new ArrayList<>();
+        for (Course i : list) {
+            idList.add(String.valueOf(i.getCourseId()));
+        }
+        return idList;
+    }
+
 }
