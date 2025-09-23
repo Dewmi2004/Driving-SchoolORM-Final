@@ -99,10 +99,10 @@ private final InstructorDAO instructorDAO = (InstructorDAO) DAOFactory.getInstan
 
     @Override
     public List<String> getAllStudentIds() throws Exception {
-        List<Course> list = courseDAO.findAll();
+        List<Student> list = studentDAO.findAll();
         List<String> idList = new ArrayList<>();
-        for (Course i : list) {
-            idList.add(String.valueOf(i.getCourseId()));
+        for (Student i : list) {
+            idList.add(String.valueOf(i.getStudentID()));
         }
         return idList;
     }
