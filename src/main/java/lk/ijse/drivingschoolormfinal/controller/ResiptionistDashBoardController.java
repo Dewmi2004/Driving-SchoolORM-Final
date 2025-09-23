@@ -10,23 +10,25 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import lk.ijse.drivingschoolormfinal.bo.custom.*;
+import lk.ijse.drivingschoolormfinal.bo.custom.LessonBO;
+import lk.ijse.drivingschoolormfinal.bo.custom.PaymentBO;
+import lk.ijse.drivingschoolormfinal.bo.custom.StudentBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
-import lk.ijse.drivingschoolormfinal.model.*;
+import lk.ijse.drivingschoolormfinal.model.LessonDTO;
+import lk.ijse.drivingschoolormfinal.model.PaymentDTO;
+import lk.ijse.drivingschoolormfinal.model.StudentDTO;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class DashBoardController implements Initializable {
+public class ResiptionistDashBoardController implements Initializable {
+    StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.STUDENT);
+    LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.LESSON);
+    PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.PAYMENT);
+
     @FXML
     private AnchorPane Ank1;
-
-    @FXML
-    private Button btnManageCourses;
-
-    @FXML
-    private Button btnManageInstructors;
 
     @FXML
     private Button btnManageLessons;
@@ -38,25 +40,10 @@ public class DashBoardController implements Initializable {
     private Button btnManageStudents;
 
     @FXML
-    private Button btnManageUsers;
-
-    @FXML
     private Button btnSearch;
 
     @FXML
-    private VBox courseId;
-
-    @FXML
     private Label dSchool;
-
-    @FXML
-    private VBox instructorId;
-
-    @FXML
-    private Label lblTotalCourses;
-
-    @FXML
-    private Label lblTotalInstructors;
 
     @FXML
     private Label lblTotalLessons;
@@ -66,9 +53,6 @@ public class DashBoardController implements Initializable {
 
     @FXML
     private Label lblTotalStudents;
-
-    @FXML
-    private Label lblTotalUsers;
 
     @FXML
     private VBox lessonId;
@@ -83,51 +67,7 @@ public class DashBoardController implements Initializable {
     private TextField txtSearch;
 
     @FXML
-    private VBox userId;
-
-    @FXML
     private VBox v1;
-
-    StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.STUDENT);
-    InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.INSTRUCTOR);
-    CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.COURSE);
-    LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.LESSON);
-    PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.PAYMENT);
-    @FXML
-    void handleManageCourses(ActionEvent event) {
-        nevigateTo("/lk/ijse/drivingschoolormfinal/accests/courseManage.fxml");
-    }
-
-    @FXML
-    void handleManageInstructors(ActionEvent event) {
-        nevigateTo("/lk/ijse/drivingschoolormfinal/accests/instructorManagement.fxml");
-    }
-
-    @FXML
-    void handleManageLessons(ActionEvent event) {
-        nevigateTo("/lk/ijse/drivingschoolormfinal/accests/LessonManage.fxml");
-    }
-
-    @FXML
-    void handleManagePayments(ActionEvent event) {
-        nevigateTo("/lk/ijse/drivingschoolormfinal/accests/Payment.fxml");
-    }
-
-    @FXML
-    void handleManageStudents(ActionEvent event) {
-        nevigateTo("/lk/ijse/drivingschoolormfinal/accests/studentManage.fxml");
-    }
-
-    @FXML
-    void handleManageUsers(ActionEvent event) {
-//        nevigateTo("/view/user.fxml");
-    }
-
-    @FXML
-    void handleSearch(ActionEvent event) {
-
-    }
-
     private void nevigateTo(String s) {
         try {
             Ank1.getChildren().clear();
@@ -143,18 +83,32 @@ public class DashBoardController implements Initializable {
 
         }
     }
+    @FXML
+    void handleManageLessons(ActionEvent event) {
+        nevigateTo("/lk/ijse/drivingschoolormfinal/accests/LessonManage.fxml");
+
+    }
+
+    @FXML
+    void handleManagePayments(ActionEvent event) {
+        nevigateTo("/lk/ijse/drivingschoolormfinal/accests/Payment.fxml");
+
+    }
+
+    @FXML
+    void handleManageStudents(ActionEvent event) {
+        nevigateTo("/lk/ijse/drivingschoolormfinal/accests/studentManage.fxml");
+
+    }
+
+    @FXML
+    void handleSearch(ActionEvent event) {
+
+    }
 
     public void setStudent () throws Exception {
         ArrayList<StudentDTO> allStudent = studentBO.getAllStudent();
         lblTotalStudents.setText(String.valueOf(allStudent.size()));
-    }
-    public void setInstructor () throws Exception {
-        ArrayList<InstructorDTO> allInstructor = instructorBO.getAllInstructor();
-        lblTotalInstructors.setText(String.valueOf(allInstructor.size()));
-    }
-    public void setCourse () throws Exception {
-        ArrayList<CourseDTO> allCourse = courseBO.getAllCourse();
-        lblTotalCourses.setText(String.valueOf(allCourse.size()));
     }
     public void setLesson () throws Exception {
         ArrayList<LessonDTO> allLesson = lessonBO.getAllLesson();
@@ -164,12 +118,11 @@ public class DashBoardController implements Initializable {
         ArrayList<PaymentDTO> allPayment = paymentBO.getAllPayments();
         lblTotalPayments.setText(String.valueOf(allPayment.size()));
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             setStudent();
-            setInstructor();
-            setCourse();
             setLesson();
             setPayment();
         } catch (Exception e) {

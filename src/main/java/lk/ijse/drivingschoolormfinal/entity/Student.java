@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -52,5 +53,10 @@ public class Student extends SuperEntity {
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Lesson> lessons = new java.util.ArrayList<>();
+
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn( name = "student_id")
+    private List<Payment> payments = new ArrayList<>();
+
 
 }
