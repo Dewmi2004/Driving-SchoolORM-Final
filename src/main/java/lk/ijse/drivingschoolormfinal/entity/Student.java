@@ -58,5 +58,11 @@ public class Student extends SuperEntity {
 //    @JoinColumn( name = "student_id")
     private List<Payment> payments = new ArrayList<>();
 
-
+    @ManyToMany
+    @JoinTable(
+            name = "student_course", // join table
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private List<Course> courses = new ArrayList<>();
 }

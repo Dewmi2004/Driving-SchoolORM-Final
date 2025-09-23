@@ -2,6 +2,7 @@ package lk.ijse.drivingschoolormfinal.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -42,4 +43,6 @@ public class Course {
     @OneToOne(mappedBy = "course", orphanRemoval = true)
     private Payment payment;
 
+    @ManyToMany(mappedBy = "courses")
+    private List<Student> students = new ArrayList<>();
 }
