@@ -16,9 +16,12 @@ public class UserBOImpl implements UserBO {
 
     @Override
     public boolean saveUser(UserDTO dto) throws Exception {
+        String hashedPassword = org.mindrot.jbcrypt.BCrypt.hashpw(dto.getUserPassword(), org.mindrot.jbcrypt.BCrypt.gensalt());
+
         User user = new User(
+
                 dto.getUserName(),
-                dto.getUserPassword(),
+                hashedPassword,
                 dto.getUserRole()
         );
         return userDAO.save(user);
@@ -26,10 +29,12 @@ public class UserBOImpl implements UserBO {
 
     @Override
     public boolean updateUser(UserDTO dto) throws Exception {
+        String hashedPassword = org.mindrot.jbcrypt.BCrypt.hashpw(dto.getUserPassword(), org.mindrot.jbcrypt.BCrypt.gensalt());
+
         User user = new User(
                 dto.getUserID(),
                 dto.getUserName(),
-                dto.getUserPassword(),
+                hashedPassword,
                 dto.getUserRole()
         );
 

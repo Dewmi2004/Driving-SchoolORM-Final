@@ -10,6 +10,7 @@ module lk.ijse.drivingschoolormfinal {
 //    requires ehcache;
     requires jakarta.xml.bind;
     requires jakarta.activation;
+    requires jbcrypt;
 
     opens lk.ijse.drivingschoolormfinal.controller to javafx.fxml;
     opens lk.ijse.drivingschoolormfinal.view.tdm to javafx.base;

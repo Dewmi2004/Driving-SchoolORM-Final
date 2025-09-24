@@ -35,6 +35,13 @@
 <!--            <artifactId>hibernate-ehcache</artifactId>-->
 <!--            <version>5.6.15.Final</version>-->
 <!--        </dependency>-->
+<!--        bcript-->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
