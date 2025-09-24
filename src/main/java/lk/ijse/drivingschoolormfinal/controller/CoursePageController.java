@@ -4,10 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import lk.ijse.drivingschoolormfinal.bo.custom.CourseBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
@@ -18,10 +20,12 @@ import lk.ijse.drivingschoolormfinal.view.tdm.InstructorTM;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CoursePageController implements Initializable {
-private CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.COURSE);
+    public AnchorPane Ank1;
+    private CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.COURSE);
     @FXML
     private Button btnAdd;
 
@@ -63,6 +67,8 @@ private CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.B
 
     @FXML
     private TextField txtFees;
+@FXML
+public TableColumn<?,?> colViewDetails;
 
     @FXML
     void ClickOnAction(MouseEvent event) {
@@ -116,11 +122,14 @@ private CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.B
             List<CourseDTO> all = courseBO.findAll();
             ObservableList<CourseTM> list = FXCollections.observableArrayList();
             for (CourseDTO dto : all) {
+                Button btn = new Button("View");
+                btn.setOnAction(e -> openCourseDetailsForm(dto.getCourseId()));
                 list.add(new CourseTM(
                        dto.getCourseId(),
                         dto.getCourseName(),
                         dto.getCourseDuration(),
-                        dto.getCourseFee()
+                        dto.getCourseFee(),
+                        btn
                 ));
             }
             tblCourses.setItems(list);
@@ -129,6 +138,22 @@ private CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.B
         }
     }
 
+    private void openCourseDetailsForm(long courseId) {
+        try {
+            Ank1.getChildren().clear();
+            AnchorPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/lk/ijse/drivingschoolormfinal/accests/course-details.fxml")));
+
+            pane.prefWidthProperty().bind(Ank1.widthProperty());
+            pane.prefHeightProperty().bind(Ank1.heightProperty());
+
+            Ank1.getChildren().add(pane);
+        }catch (Exception e){
+            new Alert(Alert.AlertType.ERROR,"Page Not Found!").show();
+            e.printStackTrace();
+
+        }
+    }
+    
     @FXML
     void handleClear(ActionEvent event) {
         clearFields();
@@ -173,6 +198,7 @@ private CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.B
         colCourseName.setCellValueFactory(new PropertyValueFactory<>("courseName"));
         colDuration.setCellValueFactory(new PropertyValueFactory<>("courseDuration"));
         colFees.setCellValueFactory(new PropertyValueFactory<>("courseFee"));
+        colViewDetails.setCellValueFactory(new PropertyValueFactory<>("btn"));
 
         loadAllCourses();
     }

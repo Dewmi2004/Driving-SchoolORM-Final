@@ -1,4 +1,5 @@
 package lk.ijse.drivingschoolormfinal.model;
+import javafx.scene.control.Button;
 import lombok.*;
 
 @Getter
@@ -10,6 +11,14 @@ public class CourseDTO {
     private String courseName;
     private String courseDuration;
     private String courseFee;
+    private Button btn;
+
+    public CourseDTO(long courseId, String courseName, String courseDuration, String courseFee) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseDuration = courseDuration;
+        this.courseFee = courseFee;
+    }
 
     public CourseDTO(String courseName, String courseDuration, String courseFee) {
         this.courseName = courseName;
@@ -17,8 +26,4 @@ public class CourseDTO {
         this.courseFee = courseFee;
     }
 
-    public CourseDTO(long courseId, String courseName) {
-        this.courseId = courseId;
-        this.courseName = courseName;
-    }
 }

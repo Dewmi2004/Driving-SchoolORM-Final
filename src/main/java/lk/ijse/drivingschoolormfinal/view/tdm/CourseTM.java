@@ -1,5 +1,6 @@
 package lk.ijse.drivingschoolormfinal.view.tdm;
 
+import javafx.scene.control.Button;
 import lombok.*;
 
 @Getter
@@ -12,6 +13,7 @@ public class CourseTM {
     private String courseName;
     private String courseDuration;
     private String courseFee;
+    private Button btn;
 
     public CourseTM(String courseName, String courseDuration, String courseFee) {
         this.courseName = courseName;
