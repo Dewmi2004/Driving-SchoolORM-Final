@@ -93,6 +93,7 @@ public class DashBoardController implements Initializable {
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.COURSE);
     LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.LESSON);
     PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.PAYMENT);
+    UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOtypes.USER);
     @FXML
     void handleManageCourses(ActionEvent event) {
         nevigateTo("/lk/ijse/drivingschoolormfinal/accests/courseManage.fxml");
@@ -120,7 +121,7 @@ public class DashBoardController implements Initializable {
 
     @FXML
     void handleManageUsers(ActionEvent event) {
-//        nevigateTo("/view/user.fxml");
+        nevigateTo("/lk/ijse/drivingschoolormfinal/accests/userManage.fxml");
     }
 
     @FXML
@@ -164,6 +165,10 @@ public class DashBoardController implements Initializable {
         ArrayList<PaymentDTO> allPayment = paymentBO.getAllPayments();
         lblTotalPayments.setText(String.valueOf(allPayment.size()));
     }
+    public void setUser () throws Exception {
+        ArrayList<UserDTO> allusers = userBO.getAllUser();
+        lblTotalUsers.setText(String.valueOf(allusers.size()));
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -172,6 +177,7 @@ public class DashBoardController implements Initializable {
             setCourse();
             setLesson();
             setPayment();
+            setUser();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

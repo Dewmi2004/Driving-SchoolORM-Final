@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "courses")
-public class Course {
+public class Course implements SuperEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "course_id")

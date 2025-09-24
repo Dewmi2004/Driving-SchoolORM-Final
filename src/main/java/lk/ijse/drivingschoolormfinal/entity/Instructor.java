@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "instructors")
-public class Instructor extends SuperEntity{
+public class Instructor implements SuperEntity{
     @Id
     @Column(name = "instructor_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

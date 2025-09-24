@@ -12,7 +12,7 @@ import java.sql.Date;
 @Data
 @Entity
 @Table(name = "lessons")
-public class Lesson {
+public class Lesson implements SuperEntity {
     @Id
     @Column(name = "lesson_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

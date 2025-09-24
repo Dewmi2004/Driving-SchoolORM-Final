@@ -1,4 +1,4 @@
 package lk.ijse.drivingschoolormfinal.entity;
 
-public class SuperEntity {
+public interface SuperEntity {
 }

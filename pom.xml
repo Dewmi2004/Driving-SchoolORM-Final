@@ -22,12 +22,12 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version>
+            <version>22</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>${javafx.version}</version>
+            <version>22</version>
         </dependency>
 <!--        second-level cache-->
 <!--        <dependency>-->
@@ -120,7 +120,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>lk.ijse.drivingschoolormfinal/lk.ijse.drivingschoolormfinal.HelloApplication</mainClass>
+                            <mainClass>lk.ijse.drivingschoolormfinal/lk.ijse.drivingschoolormfinal.AppInitializer</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

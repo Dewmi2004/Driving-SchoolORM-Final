@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "students")
-public class Student extends SuperEntity {
+public class Student implements SuperEntity {
     @Id
     @Column(name = "student_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
