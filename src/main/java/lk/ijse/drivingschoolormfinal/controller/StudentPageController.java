@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import lk.ijse.drivingschoolormfinal.bo.custom.StudentBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
 import lk.ijse.drivingschoolormfinal.model.StudentDTO;
+import lk.ijse.drivingschoolormfinal.util.RegexValidator;
 import lk.ijse.drivingschoolormfinal.util.SessionManager;
 import lk.ijse.drivingschoolormfinal.view.tdm.StudentTM;
 
@@ -74,26 +75,54 @@ public class StudentPageController implements Initializable {
     }
 
     public void handleAddStudent(ActionEvent actionEvent) {
-        try {
-            StudentDTO dto = new StudentDTO(
-                    txtName.getText(),
-                    txtEmail.getText(),
-                    txtPhone.getText(),
-                    txtAddress.getText(),
-                    txtRegisterFee.getText(),
-                    Date.valueOf(dateRegistration.getValue())
-            );
-            if (studentBO.saveStudent(dto)) {
-                showInfo("Student added successfully!");
-                loadAllStudents();
-                clearFields();
-            }
-        } catch (Exception e) {
-            showError("Error saving student: " + e.getMessage());
-        }
-    }
+            try {
+                if (!RegexValidator.isValidName(txtName.getText())) {
+                    showError("Invalid name! Only letters and spaces, 3–50 characters.");
+                    return;
+                }
+                if (!RegexValidator.isValidEmail(txtEmail.getText())) {
+                    showError("Invalid email format!");
+                    return;
+                }
+                if (!RegexValidator.isValidPhone(txtPhone.getText())) {
+                    showError("Invalid phone number!");
+                    return;
+                }
+                if (!RegexValidator.isValidAddress(txtAddress.getText())) {
+                    showError("Invalid address!");
+                    return;
+                }
+                if (!RegexValidator.isValidFee(txtRegisterFee.getText())) {
+                    showError("Invalid register fee (must be a number).");
+                    return;
+                }
+                if (dateRegistration.getValue() == null) {
+                    showError("Please select a registration date.");
+                    return;
+                }
 
-    public void handleClear(ActionEvent actionEvent) {
+                StudentDTO dto = new StudentDTO(
+                        txtName.getText(),
+                        txtEmail.getText(),
+                        txtPhone.getText(),
+                        txtAddress.getText(),
+                        txtRegisterFee.getText(),
+                        Date.valueOf(dateRegistration.getValue())
+                );
+
+                if (studentBO.saveStudent(dto)) {
+                    showInfo("Student added successfully!");
+                    loadAllStudents();
+                    clearFields();
+                }
+
+            } catch (Exception e) {
+                showError("Error saving student: " + e.getMessage());
+            }
+        }
+
+
+        public void handleClear(ActionEvent actionEvent) {
         clearFields();
     }
     private void clearFields() {
@@ -108,6 +137,31 @@ public class StudentPageController implements Initializable {
 
     public void handleUpdateStudent(ActionEvent actionEvent) {
         try {
+            if (!RegexValidator.isValidName(txtName.getText())) {
+                showError("Invalid name! Only letters and spaces, 3–50 characters.");
+                return;
+            }
+            if (!RegexValidator.isValidEmail(txtEmail.getText())) {
+                showError("Invalid email format!");
+                return;
+            }
+            if (!RegexValidator.isValidPhone(txtPhone.getText())) {
+                showError("Invalid phone number!");
+                return;
+            }
+            if (!RegexValidator.isValidAddress(txtAddress.getText())) {
+                showError("Invalid address!");
+                return;
+            }
+            if (!RegexValidator.isValidFee(txtRegisterFee.getText())) {
+                showError("Invalid register fee (must be a number).");
+                return;
+            }
+            if (dateRegistration.getValue() == null) {
+                showError("Please select a registration date.");
+                return;
+            }
+
             long id = Long.parseLong(txtStudentId.getText());
             StudentDTO dto = new StudentDTO(
                     id,
