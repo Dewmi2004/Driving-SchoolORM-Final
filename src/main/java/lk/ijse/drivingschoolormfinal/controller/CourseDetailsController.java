@@ -62,7 +62,7 @@ public class CourseDetailsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        colStudentId.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+        colStudentId.setCellValueFactory(new PropertyValueFactory<>("studentID"));
         colStudentName.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         colStudentEmail.setCellValueFactory(new PropertyValueFactory<>("studentEmail"));
     }

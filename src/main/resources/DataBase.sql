@@ -92,3 +92,12 @@ create table student_course
         foreign key (course_id) references courses (course_id)
 );
 
+create table user
+(
+    user_id      bigint auto_increment
+        primary key,
+    userName     varchar(255) not null,
+    userPassword varchar(255) not null,
+    userRole     varchar(255) not null
+);
+

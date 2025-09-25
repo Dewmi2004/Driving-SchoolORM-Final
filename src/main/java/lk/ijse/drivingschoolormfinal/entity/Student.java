@@ -51,6 +51,12 @@ public class Student implements SuperEntity {
         this.registerDate = registerDate;
     }
 
+    public Student(long studentID, String studentName, String studentEmail) {
+        this.studentID = studentID;
+        this.studentName = studentName;
+        this.studentEmail = studentEmail;
+    }
+
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Lesson> lessons = new java.util.ArrayList<>();
 

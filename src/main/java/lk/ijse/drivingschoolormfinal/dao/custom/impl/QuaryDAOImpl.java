@@ -12,20 +12,25 @@ public class QuaryDAOImpl implements QuaryDAO {
     public List<Student> findStudentsInAllCourses() {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
 
-            String hql = "SELECT new lk.ijse.drivingschoolormfinal.model.StudentDTO(" +
-                    "s.studentId, s.studentName, s.studentEmail) " +
-                    "FROM students s " +
+            String hql = "SELECT new lk.ijse.drivingschoolormfinal.entity.Student(" +
+                    "s.studentID, s.studentName, s.studentEmail) " +
+                    "FROM Student s " +
                     "WHERE NOT EXISTS (" +
-                    "   SELECT c.courseId FROM courses c " +
+                    "   SELECT c.courseId FROM Course c " +
                     "   WHERE c.courseId NOT IN (" +
-                    "       SELECT sc.courseId FROM student_course sc WHERE sc.studentId = s.studentId" +
+                    "       SELECT l.course.courseId FROM Lesson l WHERE l.student.studentID = s.studentID" +
                     "   )" +
                     ")";
 
-            return session.createQuery(hql, Student.class).getResultList();
+            return session.createQuery(hql, Student.class)
+                    .getResultList();
         }
     }
-    }
+
+
+
+
+}
 
 
 
