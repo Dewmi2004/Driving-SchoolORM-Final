@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="600" prefWidth="950" style="-fx-background-color: #eeeee4;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.drivingschoolormfinal.controller.InstructorPageController">
 
     <VBox layoutX="10.0" layoutY="10.0" spacing="15" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -67,6 +68,11 @@
         </HBox>
 
         <HBox alignment="CENTER_LEFT" spacing="15">
+            <Button mnemonicParsing="false" onAction="#btnbacktodashonaction" prefHeight="26.0" prefWidth="158.0" style="-fx-background-color: #efcc00; -fx-background-radius: 8;" text="Back To DashBoard" textFill="#181717">
+                <font>
+                    <Font name="System Bold" size="14.0" />
+                </font>
+            </Button>
             <Button fx:id="btnSave" onAction="#handleAddInstructor" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Save" />
             <Button fx:id="btnClear" onAction="#handleClear" style="-fx-background-color: #787A7D; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Clear" />
             <Button fx:id="btnUpdate" onAction="#handleUpdateInstructor" style="-fx-background-color: #536C95; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Update" />

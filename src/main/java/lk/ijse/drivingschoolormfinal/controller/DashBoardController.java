@@ -4,16 +4,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import lk.ijse.drivingschoolormfinal.bo.custom.*;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
 import lk.ijse.drivingschoolormfinal.model.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -182,5 +187,17 @@ public class DashBoardController implements Initializable {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void btnbacktodashonaction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/drivingschoolormfinal/accests/Loging.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow());
+
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.setTitle("Dashboard");
+        stage.show();
     }
 }

@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lk.ijse.drivingschoolormfinal.config.FactoryConfiguration;
 import lk.ijse.drivingschoolormfinal.entity.User;
+import lk.ijse.drivingschoolormfinal.util.SessionManager;
 import org.hibernate.Session;
 import org.mindrot.jbcrypt.BCrypt;
 import java.net.URL;
@@ -66,7 +67,8 @@ public class LogingPageController implements Initializable {
                     if (BCrypt.checkpw(password, storedHash)) {
                         statusLabel.setStyle("-fx-text-fill: green;");
                         statusLabel.setText("Login successful — welcome!");
-
+                        // store user in session
+                        SessionManager.setLoggedUser(user);
                         String fxmlPath = switch (user.getUserRole()) {
                             case "Admin" -> "/lk/ijse/drivingschoolormfinal/accests/dashBoardAdmin.fxml";
                             case "Receptionist" -> "/lk/ijse/drivingschoolormfinal/accests/dashBoardResiptionist.fxml";

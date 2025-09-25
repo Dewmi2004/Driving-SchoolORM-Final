@@ -4,15 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import lk.ijse.drivingschoolormfinal.bo.custom.UserBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
 import lk.ijse.drivingschoolormfinal.model.UserDTO;
 import lk.ijse.drivingschoolormfinal.view.tdm.UserTM;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -118,16 +124,6 @@ public class UserPageController implements Initializable {
 
         }
 
-//    public void handleBackButton(MouseEvent mouseEvent) throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/driving_school_orm/DashBoard.fxml"));
-//        Parent root = loader.load();
-//
-//        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-//        stage.setScene(new Scene(root));
-//        stage.centerOnScreen();
-//        stage.setTitle("Dashboard");
-//        stage.show();
-//    }
 
     public void handleAddStudent(ActionEvent actionEvent) {
         try {
@@ -179,5 +175,17 @@ public class UserPageController implements Initializable {
         } catch (Exception e) {
             showError("Error deleting user: " + e.getMessage());
         }
+    }
+
+    public void btnbacktodashonaction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/drivingschoolormfinal/accests/dashBoardAdmin.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow());
+
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.setTitle("Dashboard");
+        stage.show();
     }
 }

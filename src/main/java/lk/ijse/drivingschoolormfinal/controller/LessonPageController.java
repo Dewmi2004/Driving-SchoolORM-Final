@@ -4,10 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import lk.ijse.drivingschoolormfinal.bo.custom.InstructorBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.LessonBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
@@ -15,8 +20,10 @@ import lk.ijse.drivingschoolormfinal.model.CourseDTO;
 import lk.ijse.drivingschoolormfinal.model.InstructorDTO;
 import lk.ijse.drivingschoolormfinal.model.LessonDTO;
 import lk.ijse.drivingschoolormfinal.model.StudentDTO;
+import lk.ijse.drivingschoolormfinal.util.SessionManager;
 import lk.ijse.drivingschoolormfinal.view.tdm.LessonTM;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.List;
@@ -246,6 +253,28 @@ public class LessonPageController implements Initializable {
             cmbStudentId.setItems(list);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void btnbacktodashonaction(ActionEvent actionEvent) throws IOException {
+        String role = SessionManager.getUserRole();
+
+        String fxmlPath = switch (role) {
+            case "Admin" -> "/lk/ijse/drivingschoolormfinal/accests/dashBoardAdmin.fxml";
+            case "Receptionist" -> "/lk/ijse/drivingschoolormfinal/accests/dashBoardResiptionist.fxml";
+            default -> "";
+        };
+
+        if (!fxmlPath.isEmpty()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle(role + " Dashboard");
+            stage.show();
+
+            ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
         }
     }
 }

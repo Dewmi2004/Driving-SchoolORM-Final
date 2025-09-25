@@ -6,11 +6,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import lk.ijse.drivingschoolormfinal.bo.custom.CourseBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
 import lk.ijse.drivingschoolormfinal.model.CourseDTO;
@@ -18,6 +22,7 @@ import lk.ijse.drivingschoolormfinal.model.InstructorDTO;
 import lk.ijse.drivingschoolormfinal.view.tdm.CourseTM;
 import lk.ijse.drivingschoolormfinal.view.tdm.InstructorTM;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
@@ -201,6 +206,18 @@ public TableColumn<?,?> colViewDetails;
         colViewDetails.setCellValueFactory(new PropertyValueFactory<>("btn"));
 
         loadAllCourses();
+    }
+
+    public void btnbacktodashonaction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/drivingschoolormfinal/accests/dashBoardAdmin.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = ((Stage)((Node)actionEvent.getSource()).getScene().getWindow());
+
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.setTitle("Dashboard");
+        stage.show();
     }
 }
 

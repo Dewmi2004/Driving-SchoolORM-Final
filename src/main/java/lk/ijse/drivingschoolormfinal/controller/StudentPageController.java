@@ -3,16 +3,23 @@ package lk.ijse.drivingschoolormfinal.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import lk.ijse.drivingschoolormfinal.bo.custom.StudentBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
 import lk.ijse.drivingschoolormfinal.model.StudentDTO;
+import lk.ijse.drivingschoolormfinal.util.SessionManager;
 import lk.ijse.drivingschoolormfinal.view.tdm.StudentTM;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.List;
@@ -166,5 +173,27 @@ public class StudentPageController implements Initializable {
 
         loadAllStudents();
 
+    }
+
+    public void btnbacktodashonaction(ActionEvent actionEvent) throws IOException {
+        String role = SessionManager.getUserRole();
+
+        String fxmlPath = switch (role) {
+            case "Admin" -> "/lk/ijse/drivingschoolormfinal/accests/dashBoardAdmin.fxml";
+            case "Receptionist" -> "/lk/ijse/drivingschoolormfinal/accests/dashBoardResiptionist.fxml";
+            default -> "";
+        };
+
+        if (!fxmlPath.isEmpty()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle(role + " Dashboard");
+            stage.show();
+
+            ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+        }
     }
 }
