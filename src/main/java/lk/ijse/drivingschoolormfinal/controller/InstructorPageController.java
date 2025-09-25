@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import lk.ijse.drivingschoolormfinal.bo.custom.InstructorBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
 import lk.ijse.drivingschoolormfinal.model.InstructorDTO;
+import lk.ijse.drivingschoolormfinal.util.RegexValidator;
 import lk.ijse.drivingschoolormfinal.view.tdm.InstructorTM;
 
 import java.io.IOException;
@@ -86,6 +87,18 @@ private final InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance()
     @FXML
     void handleAddInstructor(ActionEvent event) {
         try {
+            if (!RegexValidator.isValidName(txtName.getText())) {
+                showError("Invalid name! Only letters and spaces, 3–50 characters.");
+                return;
+            }
+            if (!RegexValidator.isValidEmail(txtEmail.getText())) {
+                showError("Invalid email format!");
+                return;
+            }
+            if (!RegexValidator.isValidPhone(txtPhone.getText())) {
+                showError("Invalid phone number!");
+                return;
+            }
             InstructorDTO dto = new InstructorDTO(
                     txtName.getText(),
                     txtEmail.getText(),
@@ -131,6 +144,18 @@ private final InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance()
     @FXML
     void handleUpdateInstructor(ActionEvent event) {
         try {
+            if (!RegexValidator.isValidName(txtName.getText())) {
+                showError("Invalid name! Only letters and spaces, 3–50 characters.");
+                return;
+            }
+            if (!RegexValidator.isValidEmail(txtEmail.getText())) {
+                showError("Invalid email format!");
+                return;
+            }
+            if (!RegexValidator.isValidPhone(txtPhone.getText())) {
+                showError("Invalid phone number!");
+                return;
+            }
             long id = Long.parseLong(txtInstructorId.getText());
             InstructorDTO dto = new InstructorDTO(
                     id,

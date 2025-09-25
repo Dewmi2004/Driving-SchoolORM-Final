@@ -14,4 +14,6 @@ public interface CourseBO extends SuperBO {
     List<CourseDTO> findAll() throws Exception;
 
     ArrayList<CourseDTO> getAllCourse() throws Exception;
+
+    CourseDTO findById(long courseId) throws Exception;
 }

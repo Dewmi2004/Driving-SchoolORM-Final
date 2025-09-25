@@ -20,6 +20,7 @@ import lk.ijse.drivingschoolormfinal.model.CourseDTO;
 import lk.ijse.drivingschoolormfinal.model.InstructorDTO;
 import lk.ijse.drivingschoolormfinal.model.LessonDTO;
 import lk.ijse.drivingschoolormfinal.model.StudentDTO;
+import lk.ijse.drivingschoolormfinal.util.RegexValidator;
 import lk.ijse.drivingschoolormfinal.util.SessionManager;
 import lk.ijse.drivingschoolormfinal.view.tdm.LessonTM;
 
@@ -108,6 +109,10 @@ public class LessonPageController implements Initializable {
     @FXML
     void handleAddLesson(ActionEvent event) {
         try {
+            if (!RegexValidator.isValidTime(txtTime.getText())) {
+                showError("Invalid Time.");
+                return;
+            }
             LessonDTO dto = new LessonDTO(
                     Date.valueOf(dateLesson.getValue()),
                     txtTime.getText(),
@@ -147,6 +152,10 @@ public class LessonPageController implements Initializable {
     @FXML
     void handleUpdateLesson(ActionEvent event) {
         try {
+            if (!RegexValidator.isValidTime(txtTime.getText())) {
+                showError("Invalid Time.");
+                return;
+            }
             long id = Long.parseLong(txtLessonId.getText());
             LessonDTO dto = new LessonDTO(
                     id,

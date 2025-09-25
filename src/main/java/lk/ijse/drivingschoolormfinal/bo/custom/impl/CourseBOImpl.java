@@ -62,6 +62,19 @@ public class CourseBOImpl implements CourseBO {
         return courseDTOS;
 
     }
+
+    @Override
+    public CourseDTO findById(long courseId) throws Exception {
+        Course course = courseDAO.findById(courseId);
+        if (course == null) return null;
+
+        return new CourseDTO(
+                course.getCourseId(),
+                course.getCourseName(),
+                course.getCourseDuration(),
+                course.getCourseFee()
+        );
     }
+}
 
 

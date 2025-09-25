@@ -18,4 +18,10 @@ public class StudentTM {
     private String studentAddress;
     private String registerFee;
     private Date registerDate;
+
+    public StudentTM(long studentID, String studentName, String studentEmail) {
+        this.studentID = studentID;
+        this.studentName = studentName;
+        this.studentEmail = studentEmail;
+    }
 }

@@ -19,6 +19,7 @@ import lk.ijse.drivingschoolormfinal.bo.custom.CourseBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
 import lk.ijse.drivingschoolormfinal.model.CourseDTO;
 import lk.ijse.drivingschoolormfinal.model.InstructorDTO;
+import lk.ijse.drivingschoolormfinal.util.RegexValidator;
 import lk.ijse.drivingschoolormfinal.view.tdm.CourseTM;
 import lk.ijse.drivingschoolormfinal.view.tdm.InstructorTM;
 
@@ -90,6 +91,19 @@ public TableColumn<?,?> colViewDetails;
     @FXML
     void handleAddCourse(ActionEvent event) {
         try {
+            if (!RegexValidator.isValidName(txtCourseName.getText())) {
+                showError("Invalid name! Only letters and spaces, 3–50 characters.");
+                return;
+            }
+            if (!RegexValidator.isValidDuration(txtDuration.getText())) {
+                showError("Duration must be in format like '3 months' or '1 month'.");
+                return;
+            }
+            if (!RegexValidator.isValidFee(txtFees.getText())) {
+                showError("Invalid Course fee (must be a number).");
+                return;
+            }
+
             CourseDTO dto = new CourseDTO(
                    txtCourseName.getText(),
                     txtDuration.getText(),
@@ -145,17 +159,20 @@ public TableColumn<?,?> colViewDetails;
 
     private void openCourseDetailsForm(long courseId) {
         try {
-            Ank1.getChildren().clear();
-            AnchorPane pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/lk/ijse/drivingschoolormfinal/accests/course-details.fxml")));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/drivingschoolormfinal/accests/course-details.fxml"));
+            AnchorPane pane = loader.load();
 
+            CourseDetailsController controller = loader.getController();
+            controller.loadCourseDetails(courseId);
+
+            Ank1.getChildren().clear();
             pane.prefWidthProperty().bind(Ank1.widthProperty());
             pane.prefHeightProperty().bind(Ank1.heightProperty());
-
             Ank1.getChildren().add(pane);
-        }catch (Exception e){
+
+        } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR,"Page Not Found!").show();
             e.printStackTrace();
-
         }
     }
     
@@ -180,6 +197,19 @@ public TableColumn<?,?> colViewDetails;
     @FXML
     void handleUpdateCourse(ActionEvent event) {
         try {
+            if (!RegexValidator.isValidName(txtCourseName.getText())) {
+                showError("Invalid name! Only letters and spaces, 3–50 characters.");
+                return;
+            }
+            if (!RegexValidator.isValidDuration(txtDuration.getText())) {
+                showError("Duration must be in format like '3 months' or '1 month'.");
+                return;
+            }
+            if (!RegexValidator.isValidFee(txtFees.getText())) {
+                showError("Invalid Course fee (must be a number).");
+                return;
+            }
+
             long id = Long.parseLong(txtCourseId.getText());
             CourseDTO dto = new CourseDTO(
                     id,

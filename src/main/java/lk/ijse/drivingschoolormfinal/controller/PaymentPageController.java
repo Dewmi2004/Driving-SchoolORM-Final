@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import lk.ijse.drivingschoolormfinal.bo.custom.PaymentBO;
 import lk.ijse.drivingschoolormfinal.bo.custom.impl.BOFactory;
 import lk.ijse.drivingschoolormfinal.model.PaymentDTO;
+import lk.ijse.drivingschoolormfinal.util.RegexValidator;
 import lk.ijse.drivingschoolormfinal.util.SessionManager;
 import lk.ijse.drivingschoolormfinal.view.tdm.PaymentTM;
 
@@ -95,6 +96,10 @@ public class PaymentPageController implements Initializable {
     @FXML
     void handleAddPayment(ActionEvent event) {
         try {
+            if (!RegexValidator.isValidFee(txtAmount.getText())) {
+                showError("Invalid Amount (must be a number).");
+                return;
+            }
             PaymentDTO dto = new PaymentDTO(
                     Date.valueOf(datePayment.getValue()),
                     cmbMethod.getSelectionModel().getSelectedItem(),
@@ -122,11 +127,10 @@ public class PaymentPageController implements Initializable {
             try {
                 String id = txtPaymentId.getText();
                 if (id.isEmpty()) {
-                    showError("Please select a payment to delete!"); // Warn if nothing selected
+                    showError("Please select a payment to delete!");
                     return;
                 }
 
-                // Delete payment safely using BO
                 if (paymentBO.deletePayment(id)) {
                     showInfo("Payment deleted successfully!");
                     loadAllPayments();
@@ -135,7 +139,7 @@ public class PaymentPageController implements Initializable {
                     showError("Payment not found or cannot be deleted!");
                 }
             } catch (Exception e) {
-                showError("Error deleting payment: " + e.getMessage()); // Show detailed error
+                showError("Error deleting payment: " + e.getMessage());
             }
         }
 
@@ -143,6 +147,10 @@ public class PaymentPageController implements Initializable {
         @FXML
     void handleUpdatePayment(ActionEvent event) {
         try {
+            if (!RegexValidator.isValidFee(txtAmount.getText())) {
+                showError("Invalid Amount (must be a number).");
+                return;
+            }
             long id = Long.parseLong(txtPaymentId.getText());
             PaymentDTO dto = new PaymentDTO(
                     id,
