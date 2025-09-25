@@ -19,9 +19,9 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="600" prefWidth="950" style="-fx-background-color: #eeeee4;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.drivingschoolormfinal.controller.StudentPageController">
 
-    <VBox layoutX="10.0" layoutY="10.0" spacing="15" AnchorPane.bottomAnchor="10.799999999999955" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.799999999999955" AnchorPane.topAnchor="10.0">
+    <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="15" AnchorPane.bottomAnchor="10.799999999999955" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.799999999999955" AnchorPane.topAnchor="10.0">
 
-        <Label prefHeight="32.0" prefWidth="273.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Student Management" />
+        <Label  prefHeight="32.0" prefWidth="273.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Student Management" />
 
         <Separator />
 
